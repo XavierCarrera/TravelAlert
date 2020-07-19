@@ -14,7 +14,6 @@ Los conocimientos de cada versión se obtuvieron de los siguientes cursos:
 * [Curso de Python](https://platzi.com/clases/python/)
 
 ## Versión 1.0 (Dedomena)
-* [Curso de Flask](https://platzi.com/clases/flask/)
 * [Curso de POO y Algoritmos con Python](https://platzi.com/clases/poo-python/)
 * [Curso de Programación Dinámica y Estocástica con Python](https://platzi.com/clases/programacion-estocastica/)
 * [Curso de Buenas Prácticas para Escritura de Código](https://platzi.com/clases/mejor-codigo/)
