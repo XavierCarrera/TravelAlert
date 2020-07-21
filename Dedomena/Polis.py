@@ -1,72 +1,55 @@
 import csv
 
-cities = {
-        "Amsterdam" : "a",
-        "Barcelona" : "b",
-        "Chicago" : "c",
-        "Dubai" : "d",
-        "El Paso" :"e",
-        "Frankfurt" : "f", 
-        "Glasgow" : "g",
-        "Helsinki" : "h",
-        "Indiana Falls" : "i",
-        "Johannesbourg" : "j",
-        "Kazan" : "k",
-        "Lahore" : "l",
-        "Mumbai" : "m",
-        "Nassau" : "n",
-        "Ottawa" : "o",
-        "Panama City" : "c",
-        "Quezon City" : "q",
-        "Rio de Janeiro" : "r",
-        "Sao Paolo" : "s",
-        "Tel Aviv" : "t",
-        "Urbana" : "u",
-        "Victoria" : "v",
-        "Warsaw" : "w",
-        "York" : "y",
-        "Zurich" : "z", 
-        }
-
-# class CitiesDataBase:
-
-#         def __init__(self, user, password):
-#                 self.user = user
-#                 self.password = password
-
 def create():
-    
-        city = input("What's the name of the city you wish to add? ")
-        if city not in cities:
-                info = input("What information you wish to add? ")
-                print("The data base was updated! ")
-                cities[city] = info
-        else:
-                print("That city is already on the list! ")
+
+        with open("cities_list.txt", mode='w') as csv_file:
+                fieldnames = ['ID', 'CITY', 'CITY INFO']
+                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+
+                city = input("What's the name of the city you wish to add? ")
+                # if city not in csv_file:
+                #         info = input("What information you wish to add? ")
+                #         print("The data base was updated! ")
+                # else:
+                #         print("That city is already on the list! ")
+
+                writer.writeheader()
+                writer.writerow({"ID": "x", "CITY": city, "CITY INFO" : "x"})
 
 def read():
 
-        for city, info in cities.items():
-                print(city + " : " + info)
+        with open("cities_list.txt", mode='r') as csv_file:
+                csv_reader = csv.reader(csv_file, delimiter=',')
+                for row in csv_reader:
+                        print(row[0], row[1], row[2])
+        
 
 def update():
+
+        pass
                 
-        city = input("What city you want to update? ")
-        if city in cities:
-                info = input(f"What information you wish to add to {city}? ")
-                cities[city] = info
-                print("The data was updated")
-        else:
-                print("The city is not in the Data Base! ")
+        # global cities
+        
+        # city = input("What city you want to update? ")
+        # if city in cities:
+        #         info = input(f"What information you wish to add to {city}? ")
+        #         cities[city] = info
+        #         print("The data was updated")
+        # else:
+        #         print("The city is not in the Data Base! ")
 
 def delete():
+
+        pass
                 
-        city = input("What city you want to delete? ")
-        if city in cities:
-                cities.pop(city)
-                print("The city was deleted")
-        else:
-                print("The city is not in the Data Base! ")
+        # global cities
+        
+        # city = input("What city you want to delete? ")
+        # if city in cities:
+        #         cities.pop(city)
+        #         print("The city was deleted")
+        # else:
+        #         print("The city is not in the Data Base! ")
 
 def run():
 
@@ -79,7 +62,7 @@ def run():
 
                         Welcome to Travel Alert. What do you want to do today?
 
-                        [C]reat a new entry
+                        [C]reate a new entry
                         [R]ead the database
                         [U]pdate the data base
                         [D]elete a entry
