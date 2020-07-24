@@ -3,25 +3,31 @@ import csv
 def create():
 
         with open("cities_list.txt", mode='w') as csv_file:
-                fieldnames = ['ID', 'CITY', 'CITY INFO']
+                fieldnames = ["ID", "CITY", "CITY INFO"]
                 writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
                 city = input("What's the name of the city you wish to add? ")
-                # if city not in csv_file:
-                #         info = input("What information you wish to add? ")
-                #         print("The data base was updated! ")
-                # else:
-                #         print("That city is already on the list! ")
-
+                city_info = input(f"What info you wish to add to {city}? ")
                 writer.writeheader()
-                writer.writerow({"ID": "x", "CITY": city, "CITY INFO" : "x"})
+                writer.writerow({"ID": "x", "CITY" : city, "CITY INFO" : city_info})
+                                
 
 def read():
 
-        with open("cities_list.txt", mode='r') as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=',')
+        # with open('cities_list.txt', mode='r') as csv_file:
+        #         csv_reader = csv.DictReader(csv_file)
+        #         line_count = 0
+        #         for row in csv_reader:
+        #                 if line_count == 0:
+        #                 print(row["ID"], row["CITY"], row["CITY INFO"])
+
+        with open('cities_list.txt', mode='r') as csv_file:
+                csv_reader = csv.DictReader(csv_file)
+                line_count = 0
                 for row in csv_reader:
-                        print(row[0], row[1], row[2])
+                        if line_count == 0:
+                                print(row["ID"], row["CITY"], row["CITY INFO"])
+                        
         
 
 def update():
