@@ -1,3 +1,4 @@
+import time
 import random
 
 DAYS_OR_RAIN = (365 / 93) 
@@ -34,8 +35,9 @@ if __name__ == '__main__':
     total_days = int(input("How many days are you staying? "))
     number_simulations = 2000
 
+    comienzo = time.time()
     rain_simulation(total_days, number_simulations)
+    final = time.time()
+    print(f"Complejidad algorítmica: {(final - comienzo)}")
 
-
-    
-            
+        
