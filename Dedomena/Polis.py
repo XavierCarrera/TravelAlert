@@ -14,13 +14,6 @@ def create():
 
 def read():
 
-        # with open('cities_list.txt', mode='r') as csv_file:
-        #         csv_reader = csv.DictReader(csv_file)
-        #         line_count = 0
-        #         for row in csv_reader:
-        #                 if line_count == 0:
-        #                 print(row["ID"], row["CITY"], row["CITY INFO"])
-
         with open('cities_list.txt', mode='r') as csv_file:
                 csv_reader = csv.DictReader(csv_file)
                 line_count = 0
@@ -28,34 +21,40 @@ def read():
                         if line_count == 0:
                                 print(row["ID"], row["CITY"], row["CITY INFO"])
                         
-        
 
 def update():
 
-        pass
-                
-        # global cities
+        city_to_update = input("What city you want to update? ")
         
-        # city = input("What city you want to update? ")
-        # if city in cities:
-        #         info = input(f"What information you wish to add to {city}? ")
-        #         cities[city] = info
-        #         print("The data was updated")
-        # else:
-        #         print("The city is not in the Data Base! ")
+        with open('cities_list.txt', mode='r') as csv_file:
+                csv_reader = csv.DictReader(csv_file)
+                for row in csv_reader:
+                        if city_to_update in row["CITY"]:
+                                with open("cities_list.txt", mode='w') as csv_file:
+                                        fieldnames = ["ID", "CITY", "CITY INFO"]
+                                        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
 
+                                        city_info = input(f"What info you wish to add to {city_to_update}? ")
+                                        writer.writeheader()
+                                        writer.writerow({"ID": "x", "CITY" : city_to_update, "CITY INFO" : city_info})
+
+                                        print("The database was updated! ")
+                        else:
+                                print("The city is not in the database!")
+                
 def delete():
-
-        pass
                 
-        # global cities
-        
-        # city = input("What city you want to delete? ")
-        # if city in cities:
-        #         cities.pop(city)
-        #         print("The city was deleted")
-        # else:
-        #         print("The city is not in the Data Base! ")
+        lines = list()
+
+        cities = input("What city you want to delete from the database? ")
+
+        with open('cities_list.txt', mode='r') as csv_file:
+                csv_reader = csv.DictReader(csv_file)
+                for row in csv_reader:
+                        lines.append(row)
+                        for field in row:
+                                if field == cities:
+                                        lines.remove(row)
 
 def run():
 
