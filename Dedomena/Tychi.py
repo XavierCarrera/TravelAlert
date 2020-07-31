@@ -33,12 +33,12 @@ def rain_simulation(total_days, number_simulations):
 
 if __name__ == '__main__':
     total_days = int(input("How many days are you staying? "))
-    number_simulations = 16000
+    number_simulations = 5000
 
     comienzo = time.time()
     rain_simulation(total_days, number_simulations)
     final = time.time()
     print(number_simulations)
-    print(f"Complejidad algorítmica: {(final - comienzo)}")
+    print(f"Algorithmic Complexity: {(final - comienzo)}")
 
         
